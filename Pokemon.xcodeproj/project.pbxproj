@@ -13,6 +13,8 @@
 		0303DD6F22DF2DA700ECAD22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0303DD6E22DF2DA700ECAD22 /* Assets.xcassets */; };
 		0303DD7222DF2DA700ECAD22 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0303DD7122DF2DA700ECAD22 /* Preview Assets.xcassets */; };
 		0303DD7522DF2DA700ECAD22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0303DD7322DF2DA700ECAD22 /* LaunchScreen.storyboard */; };
+		0303DD7D22DF2E1900ECAD22 /* PokeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303DD7C22DF2E1900ECAD22 /* PokeStore.swift */; };
+		0303DD7F22DF2E2B00ECAD22 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303DD7E22DF2E2B00ECAD22 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0303DD7122DF2DA700ECAD22 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0303DD7422DF2DA700ECAD22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0303DD7622DF2DA700ECAD22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0303DD7C22DF2E1900ECAD22 /* PokeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeStore.swift; sourceTree = "<group>"; };
+		0303DD7E22DF2E2B00ECAD22 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				0303DD6822DF2DA500ECAD22 /* AppDelegate.swift */,
 				0303DD6A22DF2DA500ECAD22 /* SceneDelegate.swift */,
 				0303DD6C22DF2DA500ECAD22 /* ContentView.swift */,
+				0303DD7C22DF2E1900ECAD22 /* PokeStore.swift */,
+				0303DD7E22DF2E2B00ECAD22 /* Pokemon.swift */,
 				0303DD6E22DF2DA700ECAD22 /* Assets.xcassets */,
 				0303DD7322DF2DA700ECAD22 /* LaunchScreen.storyboard */,
 				0303DD7622DF2DA700ECAD22 /* Info.plist */,
@@ -145,8 +151,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0303DD7F22DF2E2B00ECAD22 /* Pokemon.swift in Sources */,
 				0303DD6922DF2DA500ECAD22 /* AppDelegate.swift in Sources */,
 				0303DD6B22DF2DA500ECAD22 /* SceneDelegate.swift in Sources */,
+				0303DD7D22DF2E1900ECAD22 /* PokeStore.swift in Sources */,
 				0303DD6D22DF2DA500ECAD22 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
