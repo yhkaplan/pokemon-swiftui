@@ -9,13 +9,13 @@ import Foundation
 import Combine
 import SwiftUI
 
-final class PokeStore: ObservableObject {
+public final class PokeStore: ObservableObject {
 
     var cancellable: AnyCancellable?
 
-    @Published var pokemons: [Pokemon] = []
+    @Published public var pokemons: [Pokemon] = []
 
-    init() {
+    public init() {
         downloadPokemon()
     }
 

@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import UI
+import Model
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

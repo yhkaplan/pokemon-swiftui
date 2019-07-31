@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import Model
 
-struct ContentView : View {
+public struct ContentView : View {
     @ObservedObject var pokestore: PokeStore
 
-    var body: some View {
+    public init(pokestore: PokeStore) {
+        self.pokestore = pokestore
+    }
+
+    public var body: some View {
         NavigationView {
             List(pokestore.pokemons, id: \.name) { pokemon in
                 Text(pokemon.name.capitalized)
