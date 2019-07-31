@@ -7,4 +7,4 @@ import UI
 import PlaygroundSupport
 
 // Present the view controller in the Live View window
-PlaygroundPage.current.liveView = UIHostingController(rootView: ContentView(pokestore: PokeStore()))
+PlaygroundPage.current.liveView = UIHostingController(rootView: ListViewContainer(pokeStore: PokeStore()))
