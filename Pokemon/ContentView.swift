@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView : View {
-    @ObjectBinding var pokestore: PokeStore
+    @ObservedObject var pokestore: PokeStore
 
     var body: some View {
         Text(pokestore.pokemons.last?.name.capitalized ?? "-")

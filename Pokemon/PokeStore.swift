@@ -9,18 +9,11 @@ import Foundation
 import Combine
 import SwiftUI
 
-final class PokeStore: BindableObject {
+final class PokeStore: ObservableObject {
 
-    let willChange = PassthroughSubject<Void, Never>()
     var cancellable: AnyCancellable?
 
-    var pokemons: [Pokemon] = [] {
-        willSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.willChange.send()
-            }
-        }
-    }
+    @Published var pokemons: [Pokemon] = []
 
     init() {
         downloadPokemon()
@@ -34,7 +27,12 @@ final class PokeStore: BindableObject {
             .sink(receiveCompletion: { completion in
                 // TODO: do something w/ error?
             }, receiveValue: { [weak self] pokemon in
-                self?.pokemons.append(pokemon)
+                // TODO: Another approach preferred?
+                // Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.
+                DispatchQueue.main.async {
+                    self?.pokemons.append(pokemon)
+                }
+
             }
         )
     }
