@@ -6,4 +6,10 @@
 //  Copyright © 2019 josh. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+public struct ErrorView: View {
+    public var body: some View {
+        Text("Major error did occur")
+    }
+}

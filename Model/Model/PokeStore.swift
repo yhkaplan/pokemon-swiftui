@@ -14,19 +14,29 @@ public final class PokeStore: ObservableObject {
     var cancellable: AnyCancellable?
 
     @Published public var pokemons: [Pokemon] = []
+    @Published public var majorErrorDidOccur = false // TODO: what is best way to share error w/
 
     public init() {
-        downloadPokemon()
+        downloadPokemons()
     }
 
-    func downloadPokemon() {
+    public func cancel() {
+        cancellable?.cancel()
+    }
+
+    public func downloadPokemons() {
         let url = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .map { $0.data } // TODO: this probably erases useful info like empty data and response code...
             .decode(type: PokemonPage.self, decoder: JSONDecoder())
-            .sink(receiveCompletion: { completion in
-                switch completion {
+            .sink(receiveCompletion: { [weak self] result in
+                switch result {
                 case .failure(let error):
+                    if error is URLError {
+                        DispatchQueue.main.async {
+                            self?.majorErrorDidOccur = true
+                        }
+                    }
                     print("Error: " + error.localizedDescription)
                 case .finished:
                     print("Success!")

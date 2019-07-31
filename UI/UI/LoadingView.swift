@@ -6,4 +6,13 @@
 //  Copyright © 2019 josh. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+
+public struct LoadingView: View {
+    public var body: some View {
+        VStack {
+            ActivityIndicator(style: .large)
+            Text("Loading...").font(.system(.caption))
+        }
+    }
+}

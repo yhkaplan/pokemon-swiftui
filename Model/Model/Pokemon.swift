@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PokemonPage: Codable {
+struct PokemonPage: Codable {
     public let count: Int
     public let previousPage: URL?
     public let nextPage: URL?
@@ -21,9 +21,21 @@ public struct PokemonPage: Codable {
     }
 }
 
-public struct Pokemon: Codable {
-    public let height: Int?
-    public let id: Int?
+public struct Pokemon: Codable, Equatable {
     public let name: String
-    public let url: URL?
+
+    public var url: URL?
+
+    public var height: Int?
+    public var id: Int?
+    public var weight: Int?
+    public var baseExperience: Int?
+    public var sprites: Sprites?
 }
+
+public struct Sprites: Codable, Equatable {
+    public var frontDefault: URL?
+    public var backDefault: URL?
+}
+
+// TODO: Abilities, Forms, Moves, Species, Stats, Types

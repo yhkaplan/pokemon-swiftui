@@ -7,46 +7,24 @@
 
 import SwiftUI
 import Model
-import UIKit
 
-struct ActivityIndicator: UIViewRepresentable {
-    typealias UIViewType = UIActivityIndicatorView
+public struct ListViewContainer: View {
+    @ObservedObject var pokeStore: PokeStore
 
-    let style: UIActivityIndicatorView.Style
+    var isLoading: Bool { pokeStore.pokemons.isEmpty }
 
-    func makeUIView(context: Self.Context) -> Self.UIViewType {
-        return UIActivityIndicatorView(style: style)
-    }
-
-    func updateUIView(_ uiView: Self.UIViewType, context: Self.Context) {
-        uiView.startAnimating()
-    }
-
-    static func dismantleUIView(_ uiView: Self.UIViewType, coordinator: Self.Coordinator) {
-        uiView.stopAnimating()
-    }
-}
-
-public struct ListViewContainer : View {
-    @ObservedObject var pokestore: PokeStore
-    var isLoading: Bool { pokestore.pokemons.isEmpty }
-
-    public init(pokestore: PokeStore) {
-        self.pokestore = pokestore
+    public init(pokeStore: PokeStore) {
+        self.pokeStore = pokeStore
     }
 
     public var body: some View {
         NavigationView {
-            if isLoading {
-                VStack {
-                    ActivityIndicator(style: .large)
-                    Text("Loading...")
-                }
+            if pokeStore.majorErrorDidOccur {
+                ErrorView()
+            } else if isLoading {
+                LoadingView()
             } else {
-                List(pokestore.pokemons, id: \.name) { pokemon in
-                    Text(pokemon.name.capitalized)
-                }
-                .navigationBarTitle("All Pokemon")
+                ListView(pokemons: $pokeStore.pokemons).navigationBarTitle("All Pokemon")
             }
         }
     }
@@ -55,7 +33,7 @@ public struct ListViewContainer : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ListViewContainer(pokestore: PokeStore())
+        ListViewContainer(pokeStore: PokeStore())
     }
 }
 #endif
