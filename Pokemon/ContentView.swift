@@ -11,7 +11,12 @@ struct ContentView : View {
     @ObservedObject var pokestore: PokeStore
 
     var body: some View {
-        Text(pokestore.pokemons.last?.name.capitalized ?? "-")
+        NavigationView {
+            List(pokestore.pokemons, id: \.name) { pokemon in
+                Text(pokemon.name.capitalized)
+            }
+            .navigationBarTitle("All Pokemon")
+        }
     }
 }
 

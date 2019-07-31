@@ -20,17 +20,22 @@ final class PokeStore: ObservableObject {
     }
 
     func downloadPokemon() {
-        let url = URL(string: "https://pokeapi.co/api/v2/pokemon/1/")!
+        let url = URL(string: "https://pokeapi.co/api/v2/pokemon/")!
         cancellable = URLSession.shared.dataTaskPublisher(for: url)
-            .map { $0.data } // TODO: this probably erases errors
-            .decode(type: Pokemon.self, decoder: JSONDecoder())
+            .map { $0.data } // TODO: this probably erases useful info like empty data and response code...
+            .decode(type: PokemonPage.self, decoder: JSONDecoder())
             .sink(receiveCompletion: { completion in
-                // TODO: do something w/ error?
-            }, receiveValue: { [weak self] pokemon in
+                switch completion {
+                case .failure(let error):
+                    print("Error: " + error.localizedDescription)
+                case .finished:
+                    print("Success!")
+                }
+            }, receiveValue: { [weak self] pokemonPage in
                 // TODO: Another approach preferred?
                 // Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.
                 DispatchQueue.main.async {
-                    self?.pokemons.append(pokemon)
+                    self?.pokemons.append(contentsOf: pokemonPage.pokemons)
                 }
 
             }
