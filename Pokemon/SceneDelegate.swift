@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: ListViewContainer(pokeStore: PokeStore()))
+            window.rootViewController = UIHostingController(rootView: ListViewContainer(pokeStore: PokemonListStore(initialValue: PokemonPage(), publisher: PublisherProvider.publisher(for: PokemonPage.self, url: URL(string: "https://pokeapi.co/api/v2/pokemon/")!))))
             self.window = window
             window.makeKeyAndVisible()
         }

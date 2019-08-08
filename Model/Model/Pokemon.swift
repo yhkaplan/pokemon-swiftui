@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokemonPage: Codable {
+public struct PokemonPage: Codable {
     public let count: Int
     public let previousPage: URL?
     public let nextPage: URL?
@@ -18,6 +18,14 @@ struct PokemonPage: Codable {
     case previousPage = "previous"
     case nextPage = "next"
     case pokemons = "results"
+    }
+
+    public init() {
+        count = 0
+        pokemons = []
+
+        previousPage = nil
+        nextPage = nil
     }
 }
 

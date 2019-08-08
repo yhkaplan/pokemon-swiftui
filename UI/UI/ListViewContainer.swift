@@ -9,22 +9,22 @@ import SwiftUI
 import Model
 
 public struct ListViewContainer: View {
-    @ObservedObject var pokeStore: PokeStore
+    @ObservedObject var pokeStore: PokemonListStore // TODO: change action from void
 
-    var isLoading: Bool { pokeStore.pokemons.isEmpty }
+    var isLoading: Bool {
+        pokeStore.result.value?.pokemons.isEmpty ?? true
+    }
 
-    public init(pokeStore: PokeStore) {
+    public init(pokeStore: PokemonListStore) {
         self.pokeStore = pokeStore
     }
 
     public var body: some View {
         NavigationView {
-            if pokeStore.majorErrorDidOccur {
-                ErrorView()
-            } else if isLoading {
+            if isLoading {
                 LoadingView()
             } else {
-                ListView(pokemons: $pokeStore.pokemons).navigationBarTitle("All Pokemon")
+                ListView(pokemons: pokeStore.result.value?.pokemons ?? []).navigationBarTitle("All Pokemon")
             }
         }
     }
@@ -33,7 +33,20 @@ public struct ListViewContainer: View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ListViewContainer(pokeStore: PokeStore())
+        ListViewContainer(
+            pokeStore: PokemonListStore(
+                initialValue: PokemonPage(),
+                publisher: PublisherProvider.publisher(
+                    for: PokemonPage.self,
+                    url: URL(string: "https://dkfjjf.com")!
+                )
+            )
+        )
     }
 }
 #endif
+
+
+// '(@escaping ((Result<[Pokemon], Error>) -> Void) -> Void, @escaping ([Pokemon]?, Error?) -> Void) -> ()' to expected argument type
+
+// '(@escaping (Result<[Pokemon], Error>) -> (), (Optional<Array<Pokemon>>, Optional<Error>) -> ()) -> ()')
