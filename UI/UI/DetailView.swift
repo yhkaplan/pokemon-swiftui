@@ -8,6 +8,7 @@
 
 import Model
 import SwiftUI
+import URLImage
 
 struct DetailView: View {
     @ObservedObject var resource: Resource<Pokemon>
@@ -19,7 +20,12 @@ struct DetailView: View {
 
     var body: some View {
         VStack {
-            Text(resource.result?.value?.name.capitalized ?? "-")
+            HStack {
+                resource.result?.value?.sprites?.frontDefault.map { URLImage($0) }
+                Text(resource.result?.value?.name.capitalized ?? "-")
+                    .font(.largeTitle)
+            }
+            Spacer()
         }.onDisappear { self.resource.cancel() }
     }
 }
