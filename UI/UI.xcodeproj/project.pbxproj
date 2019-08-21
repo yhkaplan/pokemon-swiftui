@@ -11,6 +11,7 @@
 		030D50E122F1A1CE00907027 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D50E022F1A1CE00907027 /* ErrorView.swift */; };
 		030D50E322F1A20900907027 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D50E222F1A20900907027 /* ListView.swift */; };
 		030D50E522F1A25700907027 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030D50E422F1A25700907027 /* LoadingView.swift */; };
+		031CEDCB230D622400B0CF3B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031CEDCA230D622400B0CF3B /* DetailView.swift */; };
 		038168A322F156DA005F6772 /* UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 038168A122F156DA005F6772 /* UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		038168C322F1571F005F6772 /* ListViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038168C222F1571F005F6772 /* ListViewContainer.swift */; };
 		038168CB22F1574B005F6772 /* Model.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038168CA22F1574B005F6772 /* Model.framework */; platformFilter = ios; };
@@ -36,6 +37,7 @@
 		030D50E022F1A1CE00907027 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		030D50E222F1A20900907027 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		030D50E422F1A25700907027 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		031CEDCA230D622400B0CF3B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0381689E22F156DA005F6772 /* UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		038168A122F156DA005F6772 /* UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		038168A222F156DA005F6772 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				030D50E022F1A1CE00907027 /* ErrorView.swift */,
 				030D50E222F1A20900907027 /* ListView.swift */,
 				030D50E422F1A25700907027 /* LoadingView.swift */,
+				031CEDCA230D622400B0CF3B /* DetailView.swift */,
 				038168A222F156DA005F6772 /* Info.plist */,
 			);
 			path = UI;
@@ -177,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				030D50E322F1A20900907027 /* ListView.swift in Sources */,
+				031CEDCB230D622400B0CF3B /* DetailView.swift in Sources */,
 				030D50DF22F1A0D700907027 /* ActivityIndicator.swift in Sources */,
 				030D50E122F1A1CE00907027 /* ErrorView.swift in Sources */,
 				030D50E522F1A25700907027 /* LoadingView.swift in Sources */,

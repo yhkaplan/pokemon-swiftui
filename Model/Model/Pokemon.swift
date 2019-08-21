@@ -7,28 +7,7 @@
 
 import Foundation
 
-public struct PokemonPage: Codable {
-    public let count: Int
-    public let previousPage: URL?
-    public let nextPage: URL?
-    public let pokemons: [Pokemon]
-
-    enum CodingKeys: String, CodingKey {
-    case count
-    case previousPage = "previous"
-    case nextPage = "next"
-    case pokemons = "results"
-    }
-
-    public init() {
-        count = 0
-        pokemons = []
-
-        previousPage = nil
-        nextPage = nil
-    }
-}
-
+// TODO: Abilities, Forms, Moves, Species, Stats, Types
 public struct Pokemon: Codable, Equatable {
     public let name: String
 
@@ -45,5 +24,3 @@ public struct Sprites: Codable, Equatable {
     public var frontDefault: URL?
     public var backDefault: URL?
 }
-
-// TODO: Abilities, Forms, Moves, Species, Stats, Types

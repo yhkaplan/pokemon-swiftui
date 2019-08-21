@@ -9,44 +9,39 @@ import SwiftUI
 import Model
 
 public struct ListViewContainer: View {
-    @ObservedObject var pokeStore: PokemonListStore // TODO: change action from void
 
-    var isLoading: Bool {
-        pokeStore.result.value?.pokemons.isEmpty ?? true
-    }
-
-    public init(pokeStore: PokemonListStore) {
-        self.pokeStore = pokeStore
-    }
+    @ObservedObject var resource: Resource<PokemonPage>
 
     public var body: some View {
         NavigationView {
-            if isLoading {
-                LoadingView()
-            } else {
-                ListView(pokemons: pokeStore.result.value?.pokemons ?? []).navigationBarTitle("All Pokemon")
-            }
+            view(for: resource)
         }
+    }
+
+    public init(resource: Resource<PokemonPage>) {
+        self.resource = resource
+    }
+
+    /// Type-erasing to AnyView is obviously not the best solution...
+    func view(for resource: Resource<PokemonPage>) -> AnyView {
+        if let result = resource.result {
+             switch result {
+             case .success(let page):
+                 return AnyView(ListView(pokemons: page.pokemons).navigationBarTitle("All Pokemon"))
+             case .failure:
+                 return AnyView(ErrorView())
+             }
+
+         } else {
+             return AnyView(LoadingView())
+         }
     }
 }
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        ListViewContainer(
-            pokeStore: PokemonListStore(
-                initialValue: PokemonPage(),
-                publisher: PublisherProvider.publisher(
-                    for: PokemonPage.self,
-                    url: URL(string: "https://dkfjjf.com")!
-                )
-            )
-        )
+        ListViewContainer(resource: Resource(endpoint: pokemonPageEndpoint))
     }
 }
 #endif
-
-
-// '(@escaping ((Result<[Pokemon], Error>) -> Void) -> Void, @escaping ([Pokemon]?, Error?) -> Void) -> ()' to expected argument type
-
-// '(@escaping (Result<[Pokemon], Error>) -> (), (Optional<Array<Pokemon>>, Optional<Error>) -> ()) -> ()')
