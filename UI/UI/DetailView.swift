@@ -20,6 +20,6 @@ struct DetailView: View {
     var body: some View {
         VStack {
             Text(resource.result?.value?.name.capitalized ?? "-")
-        }
+        }.onDisappear { self.resource.cancel() }
     }
 }

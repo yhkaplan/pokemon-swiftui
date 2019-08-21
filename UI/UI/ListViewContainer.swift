@@ -15,7 +15,7 @@ public struct ListViewContainer: View {
     public var body: some View {
         NavigationView {
             view(for: resource)
-        }
+        }.onDisappear { self.resource.cancel() }
     }
 
     public init(resource: Resource<PokemonPage>) {
@@ -27,7 +27,10 @@ public struct ListViewContainer: View {
         if let result = resource.result {
              switch result {
              case .success(let page):
-                 return AnyView(ListView(pokemons: page.pokemons).navigationBarTitle("All Pokemon"))
+                 return AnyView(
+                    ListView(pokemons: page.pokemons)
+                        .navigationBarTitle("All Pokemon")
+                 )
              case .failure:
                  return AnyView(ErrorView())
              }
