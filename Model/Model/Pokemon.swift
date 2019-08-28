@@ -64,10 +64,14 @@ public struct Pokemon: Codable, Equatable {
 }
 
 // MARK: - Ability
-public struct Ability: Codable, Equatable {
-    public let ability: Species?
+public struct Ability: Codable, Equatable, Identifiable {
+    public let ability: Species
     public let isHidden: Bool?
     public let slot: Int?
+
+    public typealias ID = String
+
+    public var id: Self.ID { return ability.name }
 
     enum CodingKeys: String, CodingKey {
         case ability
@@ -75,7 +79,7 @@ public struct Ability: Codable, Equatable {
         case slot
     }
 
-    public init(ability: Species?, isHidden: Bool?, slot: Int?) {
+    public init(ability: Species, isHidden: Bool?, slot: Int?) {
         self.ability = ability
         self.isHidden = isHidden
         self.slot = slot
@@ -84,10 +88,10 @@ public struct Ability: Codable, Equatable {
 
 // MARK: - Species
 public struct Species: Codable, Equatable {
-    public let name: String?
+    public let name: String
     public let url: String?
 
-    public init(name: String?, url: String?) {
+    public init(name: String, url: String?) {
         self.name = name
         self.url = url
     }
