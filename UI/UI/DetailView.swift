@@ -25,7 +25,7 @@ struct DetailView: View {
             Text(pokemon?.name.capitalized ?? "-")
             .font(.largeTitle)
             pokemon?.sprites?.frontDefault.map {
-                URLImage($0) // TODO: make huge
+                URLImage($0)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .overlay(Rectangle().stroke(Color.black, lineWidth: 2))
