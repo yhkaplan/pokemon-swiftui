@@ -19,11 +19,8 @@ public final class Resource<Value>: ObservableObject {
     public let endpoint: Endpoint<Value>
     weak var dataTask: URLSessionDataTask?
 
-    public init(endpoint: Endpoint<Value>, shouldLazyLoad: Bool = false) {
+    public init(endpoint: Endpoint<Value>) {
         self.endpoint = endpoint
-        if !shouldLazyLoad {
-            self.load()
-        }
     }
 
     public func load() {

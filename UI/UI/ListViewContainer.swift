@@ -15,7 +15,9 @@ public struct ListViewContainer: View {
     public var body: some View {
         NavigationView {
             view(for: resource)
-        }.onDisappear { self.resource.cancel() }
+        }
+        .onAppear { self.resource.load() }
+        .onDisappear { self.resource.cancel() }
     }
 
     public init(resource: Resource<PokemonPage>) {

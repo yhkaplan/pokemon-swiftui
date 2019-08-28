@@ -17,7 +17,7 @@ struct DetailView: View {
 
     init(pokemon: Pokemon) {
         let endpoint = pokemonEndpoint(pokemon: pokemon)
-        self.resource = Resource<Pokemon>(endpoint: endpoint, shouldLazyLoad: true)
+        self.resource = Resource<Pokemon>(endpoint: endpoint)
     }
 
     var body: some View {
