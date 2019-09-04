@@ -21,12 +21,16 @@ struct DetailView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(pokemon?.name.capitalized ?? "-").font(.largeTitle)
-            pokemon?.sprites?.frontDefault.map(SquareImageView.init)
-            pokemon.map(StatView.init)
-            Spacer()
-        }.padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+        ScrollView {
+            ZStack {
+                VStack(alignment: .leading) {
+                    Text(pokemon?.name.capitalized ?? "-").font(.largeTitle)
+                    pokemon?.sprites?.frontDefault.map(SquareImageView.init)
+                    pokemon.map(StatView.init)
+                }.padding(EdgeInsets(top: 140, leading: 16, bottom: 0, trailing: 16))
+                HStack { Spacer() } // Hack to fix scroll view width
+            }
+        }
         .onAppear { self.resource.load() }
         .onDisappear { self.resource.cancel() }
     }
