@@ -24,22 +24,21 @@ public struct ListViewContainer: View {
         self.resource = resource
     }
 
-    /// Type-erasing to AnyView is obviously not the best solution...
-    func view(for resource: Resource<PokemonPage>) -> AnyView {
-        if let result = resource.result {
-             switch result {
-             case .success(let page):
-                 return AnyView(
-                    ListView(pokemons: page.pokemons)
+    func view(for resource: Resource<PokemonPage>) -> some View {
+        return Group {
+            if resource.result == nil {
+                LoadingView()
+            } else {
+                Group {
+                    if resource.result?.value?.pokemons == nil {
+                        ErrorView()
+                    } else {
+                        ListView(pokemons: resource.result?.value?.pokemons ?? [])
                         .navigationBarTitle("All Pokemon")
-                 )
-             case .failure:
-                 return AnyView(ErrorView())
-             }
-
-         } else {
-             return AnyView(LoadingView())
-         }
+                    }
+                }
+            }
+        }
     }
 }
 
